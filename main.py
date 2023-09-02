@@ -53,9 +53,9 @@ async def create_item(id: str):
     print(gophish)
     gophish.run(id, False, False)
     for filename in os.listdir("./"):
-        if filename.startswith("Gophish Results"):
+        if filename.startswith("Gophish Results for "+ gophish.safe_name):
             # Found a file whose name starts with the specified word
             full_file_path = os.path.join("./", filename)
             print(f"Found file: {full_file_path}")
-            return FileResponse(full_file_path, headers={"Content-Disposition": "attachment"})
+            return FileResponse(full_file_path, media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document", filename="Gophish Results for "+ gophish.safe_name + ".docx")
 

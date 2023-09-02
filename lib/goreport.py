@@ -51,7 +51,7 @@ class Goreport(object):
     results = None
     campaign = None
     timeline = None
-
+    safe_name =None
     # Variables for holding campaign information
     cam_id = None
     cam_url = None
@@ -676,18 +676,18 @@ Ensure the IDs are provided as comma-separated integers or interger ranges, e.g.
 
     def _build_output_xlsx_file_name(self):
         """Create the xlsx report name."""
-        safe_name = "".join(
+        self.safe_name = "".join(
             [c for c in self.cam_name if c.isalpha() or c.isdigit() or c == " "]
         ).rstrip()
-        xlsx_report = f"Gophish Results for {safe_name}.xlsx"
+        xlsx_report = f"Gophish Results for {self.safe_name}.xlsx"
         return xlsx_report
 
     def _build_output_word_file_name(self):
         """Create the docx report name."""
-        safe_name = "".join(
+        self.safe_name = "".join(
             [c for c in self.cam_name if c.isalpha() or c.isdigit() or c == " "]
         ).rstrip()
-        word_report = f"Gophish Results for {safe_name}.docx"
+        word_report = f"Gophish Results for {self.safe_name}.docx"
         return word_report
 
     def _set_word_column_width(self, column, width):
